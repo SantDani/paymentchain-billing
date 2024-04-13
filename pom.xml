@@ -8,7 +8,7 @@
 		<version>3.2.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.paymentchain.businessdomain</groupId>
+	<groupId>com.paymentchain</groupId>
 	<artifactId>billing</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Billing</name>
@@ -34,6 +34,10 @@
                     <groupId>org.postgresql</groupId>
                     <artifactId>postgresql</artifactId>
                     <version>${postgres.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.projectlombok</groupId>
+                    <artifactId>lombok</artifactId>           
                 </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

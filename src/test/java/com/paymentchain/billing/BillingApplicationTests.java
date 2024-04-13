@@ -1,4 +1,4 @@
-package com.paymentchain.businessdomain.billing;
+package com.paymentchain.billing;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
