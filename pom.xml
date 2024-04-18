@@ -17,8 +17,16 @@
 		<java.version>17</java.version>
                 <org.springdoc.version>2.3.0</org.springdoc.version>
                 <postgres.version>42.7.2</postgres.version>
+                <mapstruct.version>1.5.3.Final</mapstruct.version>
+                <lombok.versionombok.version>1.18.24</lombok.versionombok.version>
 	</properties>
 	<dependencies>
+                <!-- To map DTO class -->
+                <dependency>
+                    <groupId>org.mapstruct</groupId>
+                    <artifactId>mapstruct</artifactId>
+                    <version>${mapstruct.version}</version>  
+                </dependency>
                 <dependency>
                     <groupId>org.springdoc</groupId>
                     <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
@@ -75,6 +83,28 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+                         <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-compiler-plugin</artifactId>
+                            <version>3.13.0</version>
+                            <configuration>
+                                <source>${maven.compiler.source}</source>
+                                <target>${maven.compiler.source}</target>
+                                <!-- generate mappers -->
+                                <annotationProcessorPaths>
+                                    <path>
+                                        <groupId>org.projectlombok</groupId>
+                                        <artifactId>lombok</artifactId>
+                                        <version>${lombok.version}</version>
+                                    </path>
+                                    <path>
+                                        <groupId>org.mapstruct</groupId>
+                                        <artifactId>mapstruct-processor</artifactId>
+                                        <version>${mapstruct.version}</version>
+                                    </path> 
+                                </annotationProcessorPaths>
+                            </configuration>
+                        </plugin> 
 		</plugins>
 	</build>
 
