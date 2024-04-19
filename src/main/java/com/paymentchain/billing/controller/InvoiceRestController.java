@@ -6,6 +6,10 @@
 package com.paymentchain.billing.controller;
 
 
+import com.paymentchain.billing.common.InvoiceRequestMapper;
+import com.paymentchain.billing.common.InvoiceResponseMapper;
+import com.paymentchain.billing.dto.InvocieRequestDTO;
+import com.paymentchain.billing.dto.InvocieResponseDTO;
 import com.paymentchain.billing.entities.Invoice;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,35 +43,56 @@ public class InvoiceRestController {
     @Autowired
     InvoiceRepository billingRepository;    
     
+    
+    @Autowired
+    InvoiceRequestMapper invoiceRequestMapper; 
+    
+    @Autowired
+    InvoiceResponseMapper invoiceResponseMapper; 
+    
     @Operation(description = "Return all invoices bundled into Response", summary ="Return 204 if no data found")
     @ApiResponses(value = {@ApiResponse(responseCode = "200",description = "Exito"),
     @ApiResponse(responseCode = "500", description = "Internal error")})
     @GetMapping()
-    public List<Invoice> list() {
-       return  billingRepository.findAll();
+    public List<InvocieResponseDTO> list() {
+       List<Invoice> invoices = billingRepository.findAll();
+       return invoiceResponseMapper.InvoiceListToInvoiceResposeList(invoices);
     } 
     
     @GetMapping("/{id}")
-    public Invoice get(@PathVariable String id) {
-        Optional<Invoice> findById = billingRepository.findById(Long.valueOf(id));
-        return findById.get();
+    public InvocieResponseDTO get(@PathVariable String id) {
+        Optional<Invoice> foundInvoice = billingRepository.findById(Long.valueOf(id));
+        InvocieResponseDTO invoiceResponse =invoiceResponseMapper.InvoiceToInvoiceRespose(foundInvoice.get());
+        return invoiceResponse;
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<?> put(@PathVariable String id, @RequestBody Invoice input) {
+    public ResponseEntity<?> put(@PathVariable String id, @RequestBody InvocieRequestDTO input) {
        Invoice save = null; 
         Optional<Invoice> findById = billingRepository.findById(Long.valueOf(id));
         Invoice get = findById.get();
         if(get != null){             
-                    save = billingRepository.save(get);  
+            get.setAmount(input.getAmount());
+            get.setDetail(input.getDetail());
+            get.setCustomerId(input.getCustomerId());
+            get.setNumber(input.getNumber());
+            
+            save = billingRepository.save(get);
         }
-        return ResponseEntity.ok(save);
+        
+        InvocieResponseDTO invocieResponseDTO= invoiceResponseMapper.InvoiceToInvoiceRespose(save);
+        
+        return ResponseEntity.ok(invocieResponseDTO);
     }
     
     @PostMapping
-    public ResponseEntity<?> post(@RequestBody Invoice input) { 
-        Invoice save = billingRepository.save(input);     
-        return ResponseEntity.ok(save);
+    public ResponseEntity<?> post(@RequestBody InvocieRequestDTO input) { 
+        Invoice invoiceRequest = invoiceRequestMapper.InvoiceRequestToInvoice(input);
+        Invoice save = billingRepository.save(invoiceRequest);
+        
+        InvocieResponseDTO invoiceResponse= invoiceResponseMapper.InvoiceToInvoiceRespose(save);
+        
+        return ResponseEntity.ok(invoiceResponse);
     }
     
     @DeleteMapping("/{id}")
