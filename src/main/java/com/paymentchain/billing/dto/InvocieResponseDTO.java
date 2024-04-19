@@ -5,13 +5,14 @@
 package com.paymentchain.billing.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-
+import lombok.Data;
 
 /**
  *
  * @author SantiagoSRP
  */
 @Schema(name = "InvocieResponsetDTO", description = "Model represent a invoice on database")
+@Data
 public class InvocieResponseDTO {
    @Schema(name = "invoiceId", requiredMode = Schema.RequiredMode.REQUIRED,example = "2", defaultValue = "1", description = "Unique Id of customer on database")
    private long invoiceId;

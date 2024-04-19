@@ -8,6 +8,7 @@ import com.paymentchain.billing.dto.InvocieRequestDTO;
 import com.paymentchain.billing.entities.Invoice;
 import java.util.List;
 import org.mapstruct.InheritInverseConfiguration;
+import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 import org.mapstruct.Mappings;
@@ -16,6 +17,7 @@ import org.mapstruct.Mappings;
  *
  * @author SantiagoSRP
  */
+@Mapper(componentModel ="spring")
 public interface InvoiceRequestMapper {
 
     @Mappings({

@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.paymentchain.billing.entities;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import jakarta.persistence.Entity;
