@@ -4,7 +4,7 @@
  */
 package com.paymentchain.billing.common;
 
-import com.paymentchain.billing.dto.InvocieRequestDTO;
+import com.paymentchain.billing.dto.InvoiceRequestDTO;
 import com.paymentchain.billing.entities.Invoice;
 import java.util.List;
 import org.mapstruct.InheritInverseConfiguration;
@@ -22,13 +22,13 @@ public interface InvoiceRequestMapper {
 
     @Mappings({
         @Mapping(source = "customerId", target = "customerId")})
-    Invoice InvoiceRequestToInvoice(InvocieRequestDTO source);
+    Invoice InvoiceRequestToInvoice(InvoiceRequestDTO source);
 
-    List<Invoice> InvoiceRequestListToInvoiceList(List<InvocieRequestDTO> source);
-
-    @InheritInverseConfiguration
-    InvocieRequestDTO InvoiceToInvoiceRequest(Invoice source);
+    List<Invoice> InvoiceRequestListToInvoiceList(List<InvoiceRequestDTO> source);
 
     @InheritInverseConfiguration
-    List<InvocieRequestDTO> InvoiceListToInvoiceRequestList(List<Invoice> source);
+    InvoiceRequestDTO InvoiceToInvoiceRequest(Invoice source);
+
+    @InheritInverseConfiguration
+    List<InvoiceRequestDTO> InvoiceListToInvoiceRequestList(List<Invoice> source);
 }

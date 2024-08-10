@@ -11,16 +11,18 @@ import lombok.Data;
  *
  * @author SantiagoSRP
  */
-@Schema(name = "InvocieResponsetDTO", description = "Model represent a invoice on database")
+@Schema(name = "InvoiceResponseDTO", description = "Model represent a invoice on database")
 @Data
-public class InvocieResponseDTO {
+public class InvoiceResponseDTO {
    @Schema(name = "invoiceId", requiredMode = Schema.RequiredMode.REQUIRED,example = "2", defaultValue = "1", description = "Unique Id of customer on database")
    private long invoiceId;
    @Schema(name = "customerId", requiredMode = Schema.RequiredMode.REQUIRED,example = "2", defaultValue = "1", description = "Unique Id of customer that represent the owner of invoice")
    private long customerId;
-   @Schema(name = "number", requiredMode = Schema.RequiredMode.REQUIRED ,example = "3", defaultValue = "8", description = "Number given on fisical invoice")
+   @Schema(name = "number", requiredMode = Schema.RequiredMode.REQUIRED ,example = "3", defaultValue = "8", description = "Number given on physical invoice")
    private String number;
+   @Schema(name = "detail", requiredMode = Schema.RequiredMode.REQUIRED ,example = "Detail example", defaultValue = "Default value Example", description = "Detail of invoice")
    private String detail;
+   @Schema(name = "amount", requiredMode = Schema.RequiredMode.REQUIRED ,example = "100.00", defaultValue = "100.00", description = "Amount of invoice")
    private double amount; 
     
 }
