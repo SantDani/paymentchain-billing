@@ -19,8 +19,7 @@
         <org.springdoc.version>2.3.0</org.springdoc.version>
         <postgres.version>42.7.2</postgres.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
-        <!-- Note: There is a typo in the following property name. It should be 'lombok.version' -->
-        <lombok.version>1.18.24</lombok.version>
+        <lombok.version>1.18.30</lombok.version>
     </properties>
     <dependencies>
         <!-- MapStruct is a library that helps automatically map between DTOs and entities -->

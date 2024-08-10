@@ -20,8 +20,10 @@ import org.mapstruct.Mappings;
 @Mapper(componentModel ="spring")
 public interface InvoiceRequestMapper {
 
+   
     @Mappings({
-        @Mapping(source = "customerId", target = "customerId")})
+        @Mapping(source = "customerId", target = "customerId")
+    })
     Invoice InvoiceRequestToInvoice(InvoiceRequestDTO source);
 
     List<Invoice> InvoiceRequestListToInvoiceList(List<InvoiceRequestDTO> source);
