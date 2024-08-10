@@ -1,111 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.paymentchain</groupId>
-	<artifactId>billing</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>Billing</name>
-	<description>Billing by Paymentchain</description>
-	<properties>
-		<java.version>17</java.version>
-                <org.springdoc.version>2.3.0</org.springdoc.version>
-                <postgres.version>42.7.2</postgres.version>
-                <mapstruct.version>1.5.3.Final</mapstruct.version>
-                <lombok.versionombok.version>1.18.24</lombok.versionombok.version>
-	</properties>
-	<dependencies>
-                <!-- To map DTO class -->
-                <dependency>
-                    <groupId>org.mapstruct</groupId>
-                    <artifactId>mapstruct</artifactId>
-                    <version>${mapstruct.version}</version>  
-                </dependency>
-                <dependency>
-                    <groupId>org.springdoc</groupId>
-                    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-                    <version>${org.springdoc.version}</version>
-                </dependency>
-                
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-data-jpa</artifactId>
-                </dependency>               
-                
-                <dependency>
-                    <groupId>org.postgresql</groupId>
-                    <artifactId>postgresql</artifactId>
-                    <version>${postgres.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.projectlombok</groupId>
-                    <artifactId>lombok</artifactId>           
-                </dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.4</version>
+        <relativePath /> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.paymentchain</groupId>
+    <artifactId>billing</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Billing</name>
+    <description>Billing by Paymentchain</description>
+    <properties>
+        <java.version>17</java.version>
+        <org.springdoc.version>2.3.0</org.springdoc.version>
+        <postgres.version>42.7.2</postgres.version>
+        <mapstruct.version>1.5.3.Final</mapstruct.version>
+        <!-- Note: There is a typo in the following property name. It should be 'lombok.version' -->
+        <lombok.version>1.18.24</lombok.version>
+    </properties>
+    <dependencies>
+        <!-- MapStruct is a library that helps automatically map between DTOs and entities -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-                        <!--If want exclude junit4 and use only junit5-->
-                            <exclusions>
-                                <exclusion>
-                                    <groupId>org.junit.vintage</groupId>
-                                    <artifactId>junit-vintage-engine</artifactId>
-                                </exclusion>
-                            </exclusions>
-		</dependency>
-	</dependencies>
+        <!-- Springdoc is a library to automatically generate API documentation (OpenAPI/Swagger) -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${org.springdoc.version}</version>
+        </dependency>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-                         <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-compiler-plugin</artifactId>
-                            <version>3.13.0</version>
-                            <configuration>
-                                <source>${maven.compiler.source}</source>
-                                <target>${maven.compiler.source}</target>
-                                <!-- generate mappers -->
-                                <annotationProcessorPaths>
-                                    <path>
-                                        <groupId>org.projectlombok</groupId>
-                                        <artifactId>lombok</artifactId>
-                                        <version>${lombok.version}</version>
-                                    </path>
-                                    <path>
-                                        <groupId>org.mapstruct</groupId>
-                                        <artifactId>mapstruct-processor</artifactId>
-                                        <version>${mapstruct.version}</version>
-                                    </path> 
-                                </annotationProcessorPaths>
-                            </configuration>
-                        </plugin> 
-		</plugins>
-	</build>
+        <!-- Spring Boot Data JPA enables easy interaction with relational databases -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- PostgreSQL database connector -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgres.version}</version>
+        </dependency>
+
+        <!-- Lombok is a library that automatically generates methods like getters, setters, etc. -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <!-- Spring Boot Web Starter allows building web applications with Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Devtools provides useful tools for developers, such as automatic code reload -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- H2 in-memory database, useful for testing and local development -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Spring Boot Test Starter enables unit and integration testing -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <!-- If you want to exclude JUnit 4 and use only JUnit 5, you can do so with the
+            exclusions below -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.source}</target>
+                    <!-- These paths are needed for annotation processors (Lombok and MapStruct) to
+                    work during compilation -->
+                    <!-- Annotation processors generate additional code during compilation, such as
+                    methods or classes. 
+                     Without specifying these paths, Lombok and MapStruct annotations would not work properly,
+                     meaning no automatic code generation (e.g., getters/setters from Lombok, mappers from MapStruct)
+                    would occur. -->
+                    <annotationProcessorPaths>
+                        <!-- Specify Lombok here to generate necessary code during compilation -->
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <!-- Specify MapStruct here to automatically generate mappers during
+                        compilation -->
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
